@@ -2,18 +2,16 @@ import axios from "axios";
 
 // API_KEY : e3ffb6091393154ff4a81caaf0b29666
 const api = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+  baseURL: "https://api.themoviedb.org/3/",
   params: {
     api_key: "e3ffb6091393154ff4a81caaf0b29666",
-    languages: "en-US",
+    language: "en-US",
   },
 });
 
-api.get("/movie/top_rated");
-
 export const moviesApi = {
   nowPlaying: () => api.get("movie/now_playing"),
-  upComing: () => api.get("movie/upcomingp"),
+  upComing: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
   movieDetail: (id) =>
     api.get(`movie/${id}`, {
