@@ -19,3 +19,12 @@ React JS 를 이용한 API data받아오기 연습
 - TV show Detail
 - Movie Detail
 - Search (Movies, TV)
+
+## Code Challenges
+
+- IMDB LInk
+- Tabs inside of Movies / Show Details (TV Videos, Production Company& Cointres)
+- Collections Link
+- /Collections Route
+- TV create by image
+- TV seasons, episodes and creators

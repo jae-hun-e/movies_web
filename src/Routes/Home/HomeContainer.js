@@ -14,6 +14,7 @@ export default class extends React.Component {
 
   async componentDidMount() {
     try {
+      // throw Message;
       const {
         data: { results: nowPlaying },
       } = await moviesApi.nowPlaying();
