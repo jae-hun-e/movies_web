@@ -30,7 +30,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://jae-hun-e.github.io/movies_web",
+  "homepage": "https://relaxed-hodgkin-2d1586.netlify.app",
   "browserslist": {
     "production": [
       ">0.2%",

@@ -11,6 +11,8 @@ import TV from "Routes/TV";
 import Detail from "Routes/Detail";
 import Header from "Components/Header";
 
+// github page : "https://jae-hun-e.github.io/movies_web",
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => (
   <Router>
