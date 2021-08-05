@@ -1,7 +1,6 @@
 import React from "react";
 import SearchPresenter from "./SearchPresenter";
 import { moviesApi, tvApi } from "api";
-import Message from "Components/Message";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default class extends React.Component {

@@ -67,6 +67,32 @@ const Overview = styled.p`
   width: 50%;
 `;
 
+const InfoContainer = styled.div`
+  display: flex;
+  margin: 10px;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  justify-content: space-around;
+`;
+
+const Preview = styled.iframe`
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+`;
+
+const Homepage = styled.div`
+  width: 30%;
+  height: 100px;
+  background-image: url(${(props) => props.bgImage});
+  background-position: center center;
+  background-size: cover;
+`;
+
 const DetailPresenter = ({ result, error, loading }) =>
   loading ? (
     <>
@@ -112,17 +138,19 @@ const DetailPresenter = ({ result, error, loading }) =>
             <Item>
               {result.release_date
                 ? result.release_date
-                : `${result.first_air_date} ~ ${result.last_air_date}`}
+                : result.last_air_date !== 0
+                ? `${result.first_air_date} ~ ${result.last_air_date}`
+                : `미방`}
             </Item>
             <Divider>•</Divider>
             <Item>
-              {result.runtime
-                ? result.runtime
+              {result.runtime || result.runtime === 0
+                ? `${result.runtime}분 `
                 : result.episode_run_time.length !== 0
-                ? `${result.number_of_seasons} seasons / ${result.number_of_episodes} episodes / ${result.episode_run_time[0]} min`
-                : `${result.number_of_seasons} seasons / ${result.number_of_episodes} episodes`}
+                ? `${result.number_of_seasons} 시즌 / ${result.number_of_episodes} 에피소드 / ${result.episode_run_time[0]} 분`
+                : `${result.number_of_seasons} 시즌 / ${result.number_of_episodes} 에피소드`}
             </Item>
-            <Divider>•</Divider>
+            <Divider>•</Divider>S
             <Item>
               {result.genres &&
                 result.genres.map((genre, index) =>
@@ -133,6 +161,25 @@ const DetailPresenter = ({ result, error, loading }) =>
             </Item>
           </ItemContainer>
           <Overview>{result.overview}</Overview>
+          <InfoContainer>
+            <Preview
+              src={
+                result.videos.results.length !== 0
+                  ? `https://www.youtube.com/embed/${result.videos.results[0].key}`
+                  : require("../../assets/noPosterSmall.png").default
+              }
+              frameborder="0"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            />
+            {console.log(
+              `https://image.tmdb.org/t/p/original${result.production_companies[0].logo_path}`
+            )}
+            <Homepage
+              bgimage={`https://image.tmdb.org/t/p/original${result.production_companies[0].logo_path}`}
+            />
+          </InfoContainer>
         </Data>
       </Content>
     </Container>
