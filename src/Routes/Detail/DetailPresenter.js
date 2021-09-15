@@ -105,10 +105,6 @@ const DetailPresenter = ({ result, error, loading }) =>
     <Message />
   ) : (
     <Container>
-      {/* {console.log(loading)}
-    {console.log(
-      `https://image.tmdb.org/t/p/original${result.backdrop_path}`
-    )} */}
       <Helmet>
         <title>
           {result.original_title ? result.original_title : result.original_name}
@@ -118,9 +114,6 @@ const DetailPresenter = ({ result, error, loading }) =>
         bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
       />
       <Content>
-        {/* {console.log(
-        `https://image.tmdb.org/t/p/w300${result.belongs_to_collection.poster_path}`
-      )} */}
         <Cover
           bgImage={
             result.poster_path

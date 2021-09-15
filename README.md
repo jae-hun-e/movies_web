@@ -28,3 +28,7 @@ React JS 를 이용한 API data받아오기 연습
 - /Collections Route
 - TV create by image
 - TV seasons, episodes and creators
+
+## API pratice
+
+- change Langage ("en","kr", "es")
