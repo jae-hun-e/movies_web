@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const Home = () => {
-  const [movies, setMovies] = useState({
+  let [movies, setMovies] = useState({
     nowPlaying: null,
     upComing: null,
     popular: null,
@@ -28,14 +28,17 @@ const Home = () => {
       const {
         data: { results: nowPlaying },
       } = await moviesApi.nowPlaying();
-      // console.log(`1 : ${nowPlaying}`);
+      console.log(`1 : ${nowPlaying}`);
       const {
-        data: { results: upcoming },
+        data: { results: upComing },
       } = await moviesApi.upComing();
       const {
         data: { results: popular },
       } = await moviesApi.popular();
-      setMovies({ nowPlaying, upcoming, popular });
+
+      setMovies({ ...movies, nowPlaying, upComing, popular });
+      // console.log(2);
+      // console.log(movies);
     } catch {
       setMovies({ ...movies, error: "영화 정보를 찾을 수 없습니다." });
     } finally {
@@ -46,6 +49,7 @@ const Home = () => {
     feactAPi();
   }, []);
 
+  const { nowPlaying, upcoming, popular, error } = movies;
   return (
     <>
       <Helmet>
@@ -55,11 +59,11 @@ const Home = () => {
         <Loading />
       ) : (
         <Container>
-          {/* {console.log(movies)}
-          {console.log(`3 : ${movies.nowPlaying}`)} */}
-          {movies.nowPlaying && movies.nowPlaying.length > 0 && (
+          {/* {console.log(3)}
+          {console.log(movies)} */}
+          {nowPlaying && nowPlaying.length > 0 && (
             <Section title="Now Playing">
-              {movies.nowPlaying.map((movie) => (
+              {nowPlaying.map((movie) => (
                 <Poster
                   key={movie.id}
                   id={movie.id}
@@ -74,9 +78,9 @@ const Home = () => {
               ))}
             </Section>
           )}
-          {movies.upcoming && movies.upcoming.length > 0 && (
+          {upcoming && upcoming.length > 0 && (
             <Section title="Upcoming">
-              {movies.upcoming.map((movie) => (
+              {upcoming.map((movie) => (
                 <Poster
                   key={movie.id}
                   id={movie.id}
@@ -91,9 +95,9 @@ const Home = () => {
               ))}
             </Section>
           )}
-          {movies.popular && movies.popular.length > 0 && (
+          {popular && popular.length > 0 && (
             <Section title="Popular">
-              {movies.popular.map((movie) => (
+              {popular.map((movie) => (
                 <Poster
                   key={movie.id}
                   id={movie.id}
@@ -109,7 +113,7 @@ const Home = () => {
             </Section>
           )}
 
-          {movies.error && <Message color="#e74c3c" text={movies.error} />}
+          {error && <Message color="#e74c3c" text={error} />}
         </Container>
       )}
     </>
