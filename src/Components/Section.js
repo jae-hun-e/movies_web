@@ -3,9 +3,7 @@ import propTypes from "prop-types";
 import styled from "styled-components";
 
 const Container = styled.div`
-  :not(:last-child) {
-    margin-bottom: 50px;
-  }
+  margin-bottom: 50px;
 `;
 
 const Title = styled.span`
@@ -19,6 +17,7 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 125px);
   grid-gap: 20px;
+  justify-content: center;
 `;
 
 const Section = ({ title, children }) => (
