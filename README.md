@@ -32,3 +32,9 @@ React JS 를 이용한 API data받아오기 연습
 ## API pratice
 
 - change Langage ("en","kr", "es")
+
+## class component VS function component
+
+- coding style
+- Hook (useState, useEffect, useContext, ...)
+- movies_API data update
