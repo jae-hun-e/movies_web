@@ -20,8 +20,9 @@ const Home = () => {
     upComing: null,
     popular: null,
     error: null,
+    loading: true,
   });
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   async function feactAPi() {
     try {
@@ -36,20 +37,26 @@ const Home = () => {
         data: { results: popular },
       } = await moviesApi.popular();
 
-      setMovies({ ...movies, nowPlaying, upComing, popular });
+      setMovies((movies) => ({ ...movies, nowPlaying, upComing, popular }));
+
+      // setMovies({ ...movies, nowPlaying, upComing, popular });
       // console.log(2);
       // console.log(movies);
     } catch {
-      setMovies({ ...movies, error: "영화 정보를 찾을 수 없습니다." });
+      setMovies((movies) => ({
+        ...movies,
+        error: "영화 정보를 찾을 수 없습니다.",
+      }));
     } finally {
-      setLoading(false);
+      setMovies((movies) => ({ ...movies, loading: false }));
+      // setLoading(false);
     }
   }
   useEffect(() => {
     feactAPi();
   }, []);
 
-  const { nowPlaying, upcoming, popular, error } = movies;
+  const { nowPlaying, upcoming, popular, error, loading } = movies;
   return (
     <>
       <Helmet>

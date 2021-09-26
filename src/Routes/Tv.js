@@ -19,9 +19,8 @@ const Tv = () => {
     popular: null,
     airingToday: null,
     error: null,
+    loading: true,
   });
-
-  const [loading, setLoading] = useState(true);
 
   async function feactAPi() {
     try {
@@ -36,13 +35,13 @@ const Tv = () => {
       } = await tvApi.airingToday();
 
       // console.log(`1 : ${topRated}`);
-      setTv({ ...Tv, topRated, popular, airingToday });
+      setTv((Tv) => ({ ...Tv, topRated, popular, airingToday }));
       // console.log(2);
       // console.log(tv);
     } catch {
-      setTv({ ...tv, error: "tv정보를 찾을 수 없습니다." });
+      setTv((Tv) => ({ ...tv, error: "tv정보를 찾을 수 없습니다." }));
     } finally {
-      setLoading(false);
+      setTv((Tv) => ({ ...Tv, loading: false }));
     }
   }
 
@@ -50,7 +49,7 @@ const Tv = () => {
     feactAPi();
   }, []);
 
-  const { topRated, popular, airingToday, error } = tv;
+  const { topRated, popular, airingToday, error, loading } = tv;
   return (
     <>
       <Helmet>
